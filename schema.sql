@@ -10,10 +10,10 @@ create TABLE user(
   `id` mediumint not null auto_increment comment '用户id' ,
   `user_email` varchar(50) not null COMMENT '用户邮箱',
   `user_password` VARCHAR(50) not NULL COMMENT  '用户密码',
-  `user_admin` BOOL  NULL COMMENT '是否为管理员',
+  `user_admin` BOOL  NULL DEFAULT 0 COMMENT '是否为管理员',
   `user_name` varchar(50) not null COMMENT '用户名',
-  `user_image` varchar(500) null COMMENT '用户头像',
-  `user_created_at` datetime not null COMMENT '用户创建时间',
+  `user_image` varchar(500) null DEFAULT NUll COMMENT '用户头像',
+  `user_created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '用户创建时间',
   primary key (`id`)
 ) engine=innodb default charset=utf8;
 
