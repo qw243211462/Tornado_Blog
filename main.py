@@ -17,7 +17,7 @@ from handlers import index,auth
 class Application(tornado.web.Application):
 
     def __init__(self):
-        settings = dict(
+        setting = dict(
             template_path = os.path.join(os.path.dirname(__file__),'templates'),
             static_path = os.path.join(os.path.dirname(__file__),'static'),
             xsrf_cookies=False,
@@ -26,9 +26,10 @@ class Application(tornado.web.Application):
         )
         handlers = [ (r'/',index.IndexHandler),
                      (r'/register',auth.RegisterHandler),
-                     (r'/login',auth.LoginHandler)
+                     (r'/login',auth.LoginHandler),
+                     (r'/blog/index',index.BlogIndexHandler)
                 ]
-        tornado.web.Application.__init__(self,handlers,**settings)
+        tornado.web.Application.__init__(self,handlers,**setting)
         self.db = MySQLdb.Connection(
             host='127.0.0.1',
             database='blog',

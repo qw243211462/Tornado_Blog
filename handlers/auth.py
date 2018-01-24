@@ -56,7 +56,7 @@ class LoginHandler(BaseHandler.BaseHandler):
 
         if self._checkuser_action(username):
             if self._checkpasswd_action(username,passwd):
-                self.write('right user')
+                self.redirect("blog/index")
             else:
                 self.write('password error')
         else:
