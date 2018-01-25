@@ -34,15 +34,12 @@
             <hr class="hr">
             <div class="article_list">
                 <ul class="ul_class">
-                    <li><a href="#">持续用户体验：Learning AEM</a><span>2018-1-10</span></li>
-                    <li><a href="#">2015年阅读书单</a><span>2018-1-10</span></li>
-                    <li><a href="#">Microservices 最佳实践之路</a><span>2018-1-10</span></li>
-                    <li><a href="#">【译】The Hitchhiker’s Guide to Python! 中英对照译本</a><span>2018-1-10</span></li>
-                    <li><a href="#">【译】The Hitchhiker’s Guide to Python! 中英对照译本</a><span>2018-1-10</span></li>
-                    <li><a href="#">【译】The Hitchhiker’s Guide to Python! 中英对照译本</a><span>2018-1-10</span></li>
-                    <li><a href="#">【译】The Hitchhiker’s Guide to Python! 中英对照译本</a><span>2018-1-10</span></li>
-                    <li><a href="#">【译】The Hitchhiker’s Guide to Python! 中英对照译本</a><span>2018-1-10</span></li>
-                    <li><a href="#">【译】The Hitchhiker’s Guide to Python! 中英对照译本</a><span>2018-1-10</span></li>
+                    {% for id,title,date in zip(id_list,titles_list,date_list) %}
+
+                    <li><a href="/blog/articles/{{ id }}">{{ title }}</a><span>{{ date }}</span></li>
+
+                    {% end %}
+
                 </ul>
             </div><!--article_list结束-->
             <div class="page">

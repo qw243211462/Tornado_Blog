@@ -12,7 +12,7 @@ define('mysql_user',default='tong@Tong',help="database user")
 define('mysql_password',default="qw13198321328", help="database password")
 define('mysql_database',default="blog", help="database name")
 
-from handlers import index,auth
+from handlers import index,auth,articles
 
 class Application(tornado.web.Application):
 
@@ -27,7 +27,8 @@ class Application(tornado.web.Application):
         handlers = [ (r'/',index.IndexHandler),
                      (r'/register',auth.RegisterHandler),
                      (r'/login',auth.LoginHandler),
-                     (r'/blog/index',index.BlogIndexHandler)
+                     (r'/blog/index',index.BlogIndexHandler),
+                     (r'/blog/articles/(?P<article_id>.*)',articles.ArticleHandler)
                 ]
         tornado.web.Application.__init__(self,handlers,**setting)
         self.db = MySQLdb.Connection(
@@ -35,6 +36,7 @@ class Application(tornado.web.Application):
             database='blog',
             user='root',
             password='qw13198321328',
+            charset = 'utf8'
         )
 
 
