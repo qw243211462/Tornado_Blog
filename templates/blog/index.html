@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="../../static/css/index.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+    </script>
+
 </head>
 <body>
     <div class="main">
@@ -34,24 +37,25 @@
             <hr class="hr">
             <div class="article_list">
                 <ul class="ul_class">
-                    {% for id,title,date in zip(id_list,titles_list,date_list) %}
+                    {% for id,title,date in zip(current_id,current_title,current_date) %}
 
-                    <li><a href="/blog/articles/{{ id }}">{{ title }}</a><span>{{ date }}</span></li>
+                    <li><a href="/blog/articles/{{id}}">{{ title }}</a><span>{{ date }}</span></li>
 
                     {% end %}
 
                 </ul>
             </div><!--article_list结束-->
             <div class="page">
-                <a href="#">Home</a>
-                <a href="#">&lt;</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">...</a>
-                <a href="#">&gt;</a>
-                <a href="#">End</a>
+                <a hef="#">Home</a>
+                <a href="#"><</a>
+                {% for page in range(all_pager) %}
+                <a  href="/blog/index/{{page + 1}}">{{page + 1}}</a>
+                {% end %}
+                <a  href="#">...</a>
+                <a  href="#">&gt;</a>
+                <a  href="#">End</a>
             </div>
+
         </div><!--right结束-->
     </div><!--main结束-->
 </body>

@@ -11,3 +11,10 @@ class ArticleHandler(BaseHandler.BaseHandler):
         info1 = cur.fetchone()
         self.render('blog/article.html',article_content = str(info1[1]).strip(string.punctuation),
                     article_title = str(info1[0]).strip(string.punctuation))
+
+class CommentsHandler(BaseHandler.BaseHandler):
+    def get(self):
+        self.write('hello world')
+
+    def post(self):
+        self.write('heelo world')
