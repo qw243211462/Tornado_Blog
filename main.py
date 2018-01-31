@@ -29,7 +29,7 @@ class Application(tornado.web.Application):
                      (r'/login',auth.LoginHandler),
                      (r'/blog/index/(?P<page_num>.*)',index.BlogIndexHandler),
                      (r'/blog/articles/(?P<article_id>.*)',articles.ArticleHandler),
-                     (r'/blog/articles/(?P<article_id>.*)/(?P<comments_id>.*)',articles.CommentsHandler),
+                     #(r'/blog/articles/(?P<article_id>.*)/(?P<comments_id>.*)',articles.CommentsHandler),
                 ]
         tornado.web.Application.__init__(self,handlers,**setting)
         self.db = MySQLdb.Connection(

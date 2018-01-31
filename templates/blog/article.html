@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="../../static/css/index.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
     <div class="main">
@@ -34,7 +35,7 @@
             <div class="article">
                 <div class="article_title">
                     <h1 >{{article_title}}</h1>
-                    <p class="pub_date">2018-1-10</p>
+                    <p class="pub_date">{{article_time}}</p>
                     <hr class="title_hr">
                 </div>
                 <div class="article_content">
@@ -57,6 +58,7 @@
                 <p style="margin-top: 50px">评论区</p>
                 <hr>
                 <div class="comment_content">
+                    <ul class="comment_list">
                     <div class="comment_top" style="width: 100%">
                         <div class="content_top_left" style="width: 10%;height:80px;float: left">
                             <img src="http://0.gravatar.com/avatar/ec9435af3f1cd6d7fca626d649928e7a?s=44&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&r=G"
@@ -74,26 +76,73 @@
                             <a href="#">回复</a>
                         </div>
                     </div><!--comment_main结束-->
+                    </ul>
                 </div><!--comment_content结束-->
             </div><!--comment结束-->
             <hr style="margin-top: 40px">
             <h3>发表评论</h3>
             <p>电子邮件地址不会被公开。</p>
             <p class="comment-form-author">
-                <label style="display:block;">姓名</label>
-                <input class="author" size="30">
+                <label style="display:block;" >姓名</label>
+                <input class="author" size="30" id="user_name">
             </p>
             <p class="comment-form-email">
                 <label style="display:block;">电子邮件</label>
-                <input class="author" size="30">
+                <input class="author" size="30" id="user_email">
             </p>
-            <p >
+            <p>
                 <label style="display:block;">评论</label>
-                <textarea class="content" aria-required="true"></textarea>
+                <textarea id="comment_content" class="content" aria-required="true"></textarea>
             </p>
-            <input name="submit" type="submit" id="submit" value="发表评论">
+            <input name="submit" type="button" id="submit" value="发表评论">
          <div class="foot"></div>
         </div><!--right结束-->
     </div><!--main结束-->
+
+
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            var user_name = $("#user_name").val();
+            var user_email = $("#user_email").val();
+            var content = $("#comment_content").val();
+            var date = new Date();
+            var current_date = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+            var href = window.location.href;
+            $.ajax({
+                url:href,
+                type:"POST",
+                data:{
+                    "user_name":user_name,
+                    "user_email":user_email,
+                    "current_date":current_date,
+                    "content":content
+                },
+                success:function (arg) {
+                    var obj = jQuery.parseJSON(arg);
+                    console.log('123');
+                    var new_comment = "<hr> <div class=\"comment_top\" style=\"width: 100%\">\n" +
+                        "                        <div class=\"content_top_left\" style=\"width: 10%;height:80px;float: left\">\n" +
+                        "                            <img src=\"http://0.gravatar.com/avatar/ec9435af3f1cd6d7fca626d649928e7a?s=44&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&r=G\"\n" +
+                        "                                    style=\"margin-top: 20px;\">\n" +
+                        "                        </div><!--content_top_left结束-->\n" +
+                        "                        <div class=\"content_top_right\" style=\"width: 75%;height:80px;float: left\">\n" +
+                        "                            <p style=\"font-size: 15px\">" + obj.user_name +"</p>\n" +
+                        "                            <time class=\"time\">" + obj.current_date + "</time>\n" +
+                        "                        </div><!--content_top_right结束-->\n" +
+                        "                    </div><!--comment_top结束-->\n" +
+                        "                    <div class=\"comment_main\">\n" +
+                        "                        <section class=\"comment_content\">" + obj.content + "" +
+                        "                        </section>\n" +
+                        "                        <div class=\"reply\">\n" +
+                        "                            <a href=\"#\">回复</a>\n" +
+                        "                        </div>\n" +
+                        "                    </div><!--comment_main结束-->";
+                    $(".comment_list").append(new_comment)
+                }
+            });
+        })
+    })
+</script>
 </body>
 </html>
