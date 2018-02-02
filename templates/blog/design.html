@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/index.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+    </script>
+
+</head>
+<body>
+    <div class="main">
+        <div class="left">
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516113399961&di=d1b240ac2a796900f2a276a793dc929d&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3D988ebc2019d5ad6eaaf964e2b1ca39a3%2F77c3b67b02087bf44044d00df0d3572c10dfcf05.jpg" class="to">
+            <ul class="nav_list">
+                <li>
+                    <a href="#">
+                        <img src="../../static/images/a1.svg" class="pic">
+                        <span class="nav_list_name">前端</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../../static/images/a2.svg" class="pic">
+                        <span class="nav_list_name">后端</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../../static/images/a3.svg" class="pic">
+                        <span class="nav_list_name">思考</span>
+                    </a>
+                </li>
+            </ul>
+        </div><!--left结束-->
+        <div class="right">
+            <hr class="hr">
+            <div class="article_list">
+                <ul class="ul_class">
+                    {% for id,title,date in zip(id_list,titles_list,date_list) %}
+
+                    <li><a href="/blog/articles/{{id}}">{{ title }}</a><span>{{ date }}</span></li>
+
+                    {% end %}
+
+                </ul>
+            </div><!--article_list结束-->
+        </div><!--right结束-->
+    </div><!--main结束-->
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            //$(window).scrollTop() 当前滚动条滚动的距离
+            //$(window).height() 获得当前窗体的高度
+            //$(document).height() 获取当前文档的高度
+            var bot = 50;//bot是底部距离的高度
+            if ((bot + $(window).scrollTop()) > ($(document).height()-$(window).height())){
+                $.ajax({
+                    url:"/blog/design",
+                    type:"POST",
+                success:function (arg) {
+                    var obj = jQuery.parseJSON(arg);
+                    var i = 0;
+                    for (;i < 5;i++){
+                        var content = "<li><a href=\"/blog/articles/" + obj["title"][i]["id"] + "\">" + obj["title"][i]["title"] + "</a><span>" + obj["title"][i]["date"] + "</span></li>";
+                        $(".ul_class").append(content)
+                    }
+                }})
+            }
+        })
+    })
+</script>
+</body>
+</html>
