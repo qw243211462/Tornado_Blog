@@ -30,11 +30,3 @@ class ArticleHandler(BaseHandler.BaseHandler):
                     'content': [content, ],}
         self.write(json.dumps(resvalue))
 
-
-
-class CommentsHandler(BaseHandler.BaseHandler):
-    def get(self):
-        self.write('hello world')
-
-    def post(self):
-        self.write('heelo world')

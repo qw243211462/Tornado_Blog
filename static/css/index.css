@@ -1,3 +1,9 @@
+.left_left{
+    width:200px;
+    height: 1000px;
+    float: left;
+}
+
 .left{
     width: 200px;
     height: 500px;
@@ -9,6 +15,7 @@
     min-height: 500px;
     float: left;
 }
+
 
 .main{
     width: 1000px;
@@ -36,16 +43,17 @@
     font-size: 22px;
 }
 
-.nav_list li a{
+.nav_list li a,.sum_time a{
     text-decoration: none;
 }
 
-.nav_list li a:link,.nav_list li a:visited{
+
+.nav_list li a:link,.nav_list li a:visited, .sum_time a:link,.sum_time a:visited{
     color: #000;
 }
 
-.nav_list li a:hover,.nav_list li a:active{
-    color: #e8e8e8;
+.nav_list li a:hover,.nav_list li a:active, .sum_time a:hover,.sum_time a:active{
+    color: seagreen;
 }
 
 .hr{

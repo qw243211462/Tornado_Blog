@@ -12,7 +12,7 @@ define('mysql_user',default='tong@Tong',help="database user")
 define('mysql_password',default="qw13198321328", help="database password")
 define('mysql_database',default="blog", help="database name")
 
-from handlers import index,auth,articles,design
+from handlers import index,auth,articles,design,SumArticles
 
 class Application(tornado.web.Application):
 
@@ -27,9 +27,10 @@ class Application(tornado.web.Application):
         handlers = [ (r'/',index.IndexHandler),
                      (r'/register',auth.RegisterHandler),
                      (r'/login',auth.LoginHandler),
-                     (r'/blog/index/(?P<page_num>.*)',index.BlogIndexHandler),
-                     (r'/blog/articles/(?P<article_id>.*)',articles.ArticleHandler),
-                     (r'/blog/design', design.designHandler)
+                     (r'/blog/index/(?P<page_num>\d*)',index.BlogIndexHandler),
+                     (r'/blog/articles/(?P<article_id>\d*)',articles.ArticleHandler),
+                     (r'/blog/design', design.designHandler),
+                     (r'/blog/articles/(?P<year>\d*)/(?P<month>\d*)',SumArticles.SumArticlesHandler)
                      #(r'/blog/articles/(?P<article_id>.*)/(?P<comments_id>.*)',articles.CommentsHandler),
                 ]
         tornado.web.Application.__init__(self,handlers,**setting)

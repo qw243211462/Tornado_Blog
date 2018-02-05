@@ -25,19 +25,19 @@
             <ul class="nav_list">
                 <li>
                     <a href="/blog/design">
-                        <img src="/static/images/a1.svg" class="pic">
+                        <img src="{{static_url('images/a1.svg')}}" class="pic">
                         <span class="nav_list_name">前端</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <img src="../../static/images/a2.svg" class="pic">
+                        <img src="{{static_url('images/a2.svg')}}" class="pic">
                         <span class="nav_list_name">后端</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <img src="../../static/images/a3.svg" class="pic">
+                        <img src="{{static_url('images/a3.svg')}}" class="pic">
                         <span class="nav_list_name">思考</span>
                     </a>
                 </li>
@@ -47,7 +47,7 @@
             <hr class="hr">
             <div class="article_list">
                 <ul class="ul_class">
-                    {% for id,title,date in zip(current_id,current_title,current_date) %}
+                    {% for id,title,date in zip(id_list,titles_list,date_list) %}
 
                     <li><a href="/blog/articles/{{id}}">{{ title }}</a><span>{{ date }}</span></li>
 
@@ -55,16 +55,6 @@
 
                 </ul>
             </div><!--article_list结束-->
-            <div class="page">
-                <a hef="#">Home</a>
-                <a href="#"><</a>
-                {% for page in range(all_pager) %}
-                <a  href="/blog/index/{{page + 1}}">{{page + 1}}</a>
-                {% end %}
-                <a  href="#">...</a>
-                <a  href="#">&gt;</a>
-                <a  href="#">End</a>
-            </div>
 
         </div><!--right结束-->
     </div><!--main结束-->

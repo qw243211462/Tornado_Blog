@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../../static/css/index.css">
+    <link rel="stylesheet" href="{{static_url('css/index.css')}}">
     <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
@@ -12,20 +12,20 @@
             <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516113399961&di=d1b240ac2a796900f2a276a793dc929d&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3D988ebc2019d5ad6eaaf964e2b1ca39a3%2F77c3b67b02087bf44044d00df0d3572c10dfcf05.jpg" class="to">
             <ul class="nav_list">
                 <li>
-                    <a href="#">
-                        <img src="../../static/images/a1.svg" class="pic">
+                    <a href="/blog/design">
+                        <img src="{{static_url('images/a1.svg')}}" class="pic">
                         <span class="nav_list_name">前端</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <img src="../../static/images/a2.svg" class="pic">
+                        <img src="{{static_url('images/a2.svg')}}" class="pic">
                         <span class="nav_list_name">后端</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <img src="../../static/images/a3.svg" class="pic">
+                        <img src="{{static_url('images/a3.svg')}}" class="pic">
                         <span class="nav_list_name">思考</span>
                     </a>
                 </li>

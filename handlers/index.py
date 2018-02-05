@@ -1,6 +1,7 @@
 import tornado.web
 from handlers import BaseHandler
 import string
+import time as time1
 
 class IndexHandler(BaseHandler.BaseHandler):
     def get(self,page_num):
@@ -35,7 +36,24 @@ class BlogIndexHandler(BaseHandler.BaseHandler):
         current_date = date_list[start:end]
 
         all_pager, c = divmod(info, 5)
+
+
+        #   归档时间处理
+        date = time1.strftime('%Y-%m-%d')
+        year = date[0:4]
+        month = date[5:7]
+        if month[0] != 0:
+            month = month
+        else:
+            month = month[1]
+        month_list = []
+        year_list = []
+        for i in range(int(month)):
+            month_list.append(i)
+            year_list.append(int(year))
+
+
         self.render('blog/index.html',current_title = current_title,current_date = current_date,
-                    current_id = current_id,all_pager = all_pager)
+                    current_id = current_id,all_pager = all_pager,year_list = year_list,month_list = month_list)
 
 
